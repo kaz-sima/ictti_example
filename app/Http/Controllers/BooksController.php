@@ -9,7 +9,7 @@ class BooksController extends Controller
     public function index()
     {
         // fetch book data from DB and hand over the data to book list screen
-        $books = Book::orderBy('created_at', 'desc')->get();
+        $books = Book::orderBy('created_at', 'desc')->paginate(3); // add pagination
         return view('books', [
             'books' => $books
         ]);

@@ -3,8 +3,8 @@
 <!-- current book list-->
    	@if (count($books) > 0)
 		<div class="col-6 offset-1">
-<h2>Current Book List</h2>
-</div>
+			<h2>Current Book List</h2>
+		</div>
             <table class="table table-striped table-hover">
             <!-- table header -->
 			<thead class="thead-dark">
@@ -20,6 +20,9 @@
                 </tr>
             @endforeach
 			</table>
-     @endif
+	@endif
+    <!-- the links to the pages -->
+	{{ $books->links() }}
+	
 @endsection
 
