@@ -24,6 +24,7 @@
 					<th>Publisher</th>
 					<th>Publish Date</th>
 					<th></th>
+					<th></th>
             	</tr>
 			</thead>
             <!-- table body -->
@@ -34,6 +35,16 @@
                    	<td class="table-text">{{ $book->Author }}</td>
 					<td class="table-text">{{ $book->publisher }}</td>
                    	<td class="table-text">{{ str_before($book->published, ' ') }}
+                   	<!--edit button  -->
+                	<td>
+                    <form action="{{ '/booksedit/'.$book->id }}" method="GET">
+                       {{ csrf_field() }}
+                       {{ method_field('edit') }}
+                       <button type="submit" class="btn btn-warning">
+                          <i class="fas fa-edit"></i> update
+                       </button>
+                    </form>
+               		</td>
                    	<!--delete button  -->
                  	<td>
                     <form action="{{ 'book/'.$book->id }}" method="POST">
