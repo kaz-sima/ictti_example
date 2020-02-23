@@ -18,3 +18,7 @@ Route::get('/', function () {
 })->name('/'); // name the route for multi logins in advance
 
 Route::get('book', 'BooksController@index'); // display book list
+//register
+Route::post('/booksadd','BooksController@register');
+//add
+Route::get('/booksadd','BooksController@add');

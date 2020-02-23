@@ -1,15 +1,28 @@
 @extends('layouts.app0')
 @section('content')
-<!-- current book list-->
+    <!-- success message -->
+	@if ($msg = Session::get('status'))
+    	<div class="text-center">
+    	<font color="green"><p class="info-box">{{ $msg }}</p></font>
+    	</div>
+	@endif
+
+    <!-- current book list-->
    	@if (count($books) > 0)
 		<div class="col-6 offset-1">
 			<h2>Current Book List</h2>
 		</div>
+			<!--  link to booksadd -->
+            <p><a href="{{url('booksadd')}}"><strong><font color="#130a6d">To Add New Book</font></strong></a></p>
+			
             <table class="table table-striped table-hover">
             <!-- table header -->
 			<thead class="thead-dark">
             	<tr>
             		<th>Book Title</th>
+					<th>Author</th>
+					<th>Publisher</th>
+					<th>Publish Date</th>
             	</tr>
 			</thead>
             <!-- table body -->
@@ -17,6 +30,9 @@
                 <tr>
                 	<!-- title -->
                    	<td class="table-text">{{ $book->book_title }}</td>
+                   	<td class="table-text">{{ $book->Author }}</td>
+					<td class="table-text">{{ $book->publisher }}</td>
+                   	<td class="table-text">{{ str_before($book->published, ' ') }}                   	
                 </tr>
             @endforeach
 			</table>
