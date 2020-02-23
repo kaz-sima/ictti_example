@@ -55,5 +55,11 @@ class BooksController extends Controller
         $request->session()->flash('status', 'Task was successful!');
         return redirect('/book');
     }
-    
+    // delete processing
+    public function destroy($book_id)
+    {
+        //retrieve book data with id passed from the view and call delete processing
+        Book::find($book_id)->delete();
+        return redirect('/book');
+    }    
 }

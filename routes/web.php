@@ -22,3 +22,5 @@ Route::get('book', 'BooksController@index'); // display book list
 Route::post('/booksadd','BooksController@register');
 //add
 Route::get('/booksadd','BooksController@add');
+//delete
+Route::delete('/book/{book}','BooksController@destroy');

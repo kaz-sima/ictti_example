@@ -23,6 +23,7 @@
 					<th>Author</th>
 					<th>Publisher</th>
 					<th>Publish Date</th>
+					<th></th>
             	</tr>
 			</thead>
             <!-- table body -->
@@ -32,7 +33,17 @@
                    	<td class="table-text">{{ $book->book_title }}</td>
                    	<td class="table-text">{{ $book->Author }}</td>
 					<td class="table-text">{{ $book->publisher }}</td>
-                   	<td class="table-text">{{ str_before($book->published, ' ') }}                   	
+                   	<td class="table-text">{{ str_before($book->published, ' ') }}
+                   	<!--delete button  -->
+                 	<td>
+                    <form action="{{ 'book/'.$book->id }}" method="POST">
+                       {{ csrf_field() }}
+                       {{ method_field('delete') }}
+                       <button type="submit" class="btn btn-danger">
+                          <i class="fas fa-trash-alt"></i> delete
+                       </button>
+                    </form>
+                 	</td>   	              	
                 </tr>
             @endforeach
 			</table>
