@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,3 +29,6 @@ Route::delete('/book/{book}','BooksController@destroy');
 Route::get('/booksedit/{book}', 'BooksController@edit');
 //update
 Route::post('/bookupdate', 'BooksController@update');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
