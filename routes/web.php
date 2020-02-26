@@ -38,6 +38,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function(){
         Route::delete('/book/{book}','BooksController@destroy');
         Route::get('/booksedit/{book}', 'BooksController@edit');
         Route::post('/bookupdate', 'BooksController@update');
+        
      });
 });
         
@@ -45,4 +46,8 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function(){
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('user.top');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-   
+
+Route::get('profile/edit','ProfileController@edit')->name('profile.edit');
+Route::get('profile/update','ProfileController@confirm')->name('profile.update');
+Route::post('profile/edit','ProfileController@validation');
+Route::post('profile/update','ProfileController@update');
