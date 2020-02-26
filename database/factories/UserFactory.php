@@ -23,11 +23,14 @@ $factory->define(User::class, function (Faker $faker) {
     $faker->seed($seed++);   
     
     return [
-        'name' => $faker->name,
+        'name' => $faker->firstName,
+        'gender'=> $faker->randomElements(['male', 'female'])[0],
+        'nrc'=>$faker->name,
         'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        //'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'password' => bcrypt('user'), // guserh is the password
-        'remember_token' => Str::random(10),
+        'email_verified_at' => $faker->dateTime,
+        'password' => $password = bcrypt('user'),
+        'phone'=>$faker->PhoneNumber,
+        'address'=>$faker->address,
+        'remember_token' => str_random(10),        
     ];
 });
