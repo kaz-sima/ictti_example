@@ -2,6 +2,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Book;
+use App\Ctgry;
+use App\Subctgry;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; // add
@@ -16,7 +18,6 @@ class BooksController extends Controller
         return view('admin.book.books', [
             'books' => $books
         ]);
-        // return $dataTable->render('admin.book.index');
     }
     // register processing
     public function register(Request $request)
@@ -27,10 +28,12 @@ class BooksController extends Controller
             'Author' => 'required|min:4|max:100',
             'publisher' => 'required|min:4',
             'published' => 'required',
+            'ctgry_id' => 'required|integer|min:1',
+            'subctgry_id' => 'required|integer|min:1',
         ]);
         // validation error
         if ($validator->fails()) {
-            return redirect('/admin/booksadd')->withInput()->withErrors($validator);
+            return redirect('/admin/booksadd')->withErrors($validator)->withInput();
         }
         // book register processing
         $book = new Book();
@@ -49,7 +52,10 @@ class BooksController extends Controller
     // adding screen
     public function add()
     {
-        return view('admin.book.booksadd');
+        $ctgries = Ctgry::orderBy('code','asc')->pluck('name', 'code');
+        $ctgries = $ctgries -> prepend('ctgry', '');
+        $subctgries = Subctgry::get_subctgry();
+        return view('admin.book.booksadd')->with( compact('ctgries','subctgries') );
     }
     // delete processing
     public function destroy($book_id)
@@ -60,8 +66,11 @@ class BooksController extends Controller
     // Editing screen
     public function edit($book_id)
     {
+        $ctgries = Ctgry::orderBy('code','asc')->pluck('name', 'code');
+        $ctgries = $ctgries -> prepend('ctgry', '');
+        $subctgries = Subctgry::get_subctgry();
         $book = Book::find($book_id);
-        return view('admin.book.booksedit')->with(compact('book')); // sama as with(['book' => $book])
+        return view('admin.book.booksedit')->with(compact('book','ctgries','subctgries'));
     }
     // Update processing
     public function update(Request $request)
@@ -72,11 +81,13 @@ class BooksController extends Controller
             'Author' => 'required|min:4|max:100',
             'publisher' => 'required|min:4',
             'published' => 'required',
+            'ctgry_id' => 'required|integer|min:1',
+            'subctgry_id' => 'required|integer|min:1',
         ]);
         // Validation:error
         if ($validator->fails()) {
-            return redirect('/admin/book')->withInput()->withErrors($validator);
-            //return redirect('/admin/booksedit'."/".$request->id)->withInput()->withErrors($validator);
+            //return redirect('/admin/book')->withInput()->withErrors($validator);
+            return redirect('/admin/booksedit'."/".$request->id)->withErrors($validator)->withInput();
         }
         $book = Book::find($request->id);
         $form = $request->all();

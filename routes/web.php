@@ -39,6 +39,12 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function(){
         Route::get('/booksedit/{book}', 'BooksController@edit');
         Route::post('/bookupdate', 'BooksController@update');
         
+        //ctgry management
+        Route::get('ctgry', 'ctgryController@index')->name('ctgry.index'); 	// add
+        Route::get('ctgry/add', 'ctgryController@add')->name('ctgry.add'); 	// add
+        Route::post('ctgry/add', 'ctgryController@createctgry'); 			// add
+        Route::post('subctgry/add', 'ctgryController@createsubctgry'); 		// add        
+        
      });
 });
         

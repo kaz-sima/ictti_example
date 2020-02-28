@@ -18,7 +18,7 @@
                             		<li><a href="{{route('admin.book')}}">Book Management</a></li>
                             		<li><a href="#">loan Management</a></li>
                             		<li><a href="#">User Management</a></li>
-                            		<li><a href="#">Category Management</a></li>
+                            		<li><a href="{{route('admin.ctgry.index')}}">Category Management</a></li>
                             		<li><a href="{{route('admin.logout')}}">Logout</a></li>
                             	</ul>
 							</td>                             
