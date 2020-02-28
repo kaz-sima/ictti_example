@@ -19,6 +19,7 @@
 			<th>Author</th>
 			<th>Publisher</th>
 			<th>Publish Date</th>
+			<th>Category</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -31,7 +32,7 @@
 		<td class="table-text">{{ $book->Author }}</td>
 		<td class="table-text">{{ $book->publisher }}</td>
 		<td class="table-text">{{ str_before($book->published, ' ') }}</td>
-		<!--delete button  -->
+		<td class="td-info">{{ $book->getCtgryData() }}.{{ $book->getSubctgryData() }}</td>		
 		<!--update button -->
 		<td>
 			<form action="{{ url('/admin/booksedit/')."/".$book->id }}" method="GET">
@@ -42,6 +43,7 @@
 				</button>
 			</form>
 		</td>
+		<!--delete button  -->
 		<td>
 			<form action="{{ url('/admin/book/')."/".$book->id }}" method="POST">
 				{{ csrf_field() }}

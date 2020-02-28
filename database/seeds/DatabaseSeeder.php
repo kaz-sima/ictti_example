@@ -20,5 +20,9 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Adminstrator', 'username' => 'root', 'password' => bcrypt('admin')]
         );        
         Factory(App\Book::class, 15)->create(); // add
+        
+        $this->call('ctgriesSeeder'); 		//add
+        $this->call('subctgriesSeeder'); 	//add
+        
     }
 }
