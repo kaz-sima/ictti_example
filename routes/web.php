@@ -43,7 +43,12 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function(){
         Route::get('ctgry', 'ctgryController@index')->name('ctgry.index'); 	// add
         Route::get('ctgry/add', 'ctgryController@add')->name('ctgry.add'); 	// add
         Route::post('ctgry/add', 'ctgryController@createctgry'); 			// add
-        Route::post('subctgry/add', 'ctgryController@createsubctgry'); 		// add        
+        Route::post('subctgry/add', 'ctgryController@createsubctgry'); 		// add
+        
+        // loan & reservation management
+        Route::get('loan', 'LoanmanageController@index')->name('loan.index'); //add
+        Route::post('loans/{loan_id}', 'LoanmanageController@changestat');	// add
+        Route::post('reserve/{reserve_id}', 'LoanmanageController@reservecancel'); //add
         
      });
 });
