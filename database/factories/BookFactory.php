@@ -25,6 +25,7 @@ $factory->define(Book::class, function (Faker $faker) {
         'author'=>$faker->name,
         'publisher'=>$faker->company,
         'published'=>$faker->datetime($max='now'),
+        'lendingstatus'=>$faker->numberBetween(1,1), // add
         'ctgry_id'=>$faker->numberBetween(1,4),
         'subctgry_id'=>$faker->numberBetween(1,10),
     ];

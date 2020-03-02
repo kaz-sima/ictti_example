@@ -91,12 +91,11 @@
 			} else {
 	   			$children.prop('disabled', false);
 			}
-
 		});
 	});
 </script>
 	</div>		
-	<input type="hidden" name='Issuestatus' value='1'>
+	<input type="hidden" name='lendingstatus' value='1'>
 	<input type="hidden" name='id' value="{{$book->id}}">
         <!-- register button -->
 		<div class="form-group">
