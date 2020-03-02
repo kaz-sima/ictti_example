@@ -16,6 +16,7 @@
                              <td style="height:100%; width: 30%;">
 								<ul>
                             		<li><a href="{{route('profile.edit')}}">Edit Registration Infomation</a></li>
+                            		<li><a href="{{route('book.index')}}">book borrow</a></li>
                             		<li><a href="{{route('logout')}}">logout</a></li>
                             	</ul>
 							</td>

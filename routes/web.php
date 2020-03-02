@@ -57,3 +57,10 @@ Route::get('profile/edit','ProfileController@edit')->name('profile.edit');
 Route::get('profile/update','ProfileController@confirm')->name('profile.update');
 Route::post('profile/edit','ProfileController@validation');
 Route::post('profile/update','ProfileController@update');
+
+// borrowing book
+Route::get('book', 'BookborrowingController@index')->name('book.index');
+Route::post('book/detail/{books}', 'BookborrowingController@detail');
+Route::post('book/borrow/{books}', 'BookborrowingController@borrow');
+Route::post('book/reservation/{books}', 'BookborrowingController@reservation');
+

@@ -76,7 +76,7 @@ $(function(){
 	});
 });
 </script>
-		
+		<input type="hidden" name='lendingstatus' value='1'>
 		<!-- register button -->
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-6">
