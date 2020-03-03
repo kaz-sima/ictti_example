@@ -35,7 +35,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function(){
         Route::get('/book', 'BooksController@index')->name('book');
         Route::post('/booksadd','BooksController@register');
         Route::get('/booksadd','BooksController@add');
-        Route::delete('/book/{book}','BooksController@destroy');
+        Route::get('/book/{book}','BooksController@destroy');
         Route::get('/booksedit/{book}', 'BooksController@edit');
         Route::post('/bookupdate', 'BooksController@update');
         

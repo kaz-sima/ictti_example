@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Book;
 use App\Ctgry;
 use App\Subctgry;
+use App\DataTables\BookDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; // add
@@ -12,13 +13,19 @@ use Illuminate\Support\Facades\Validator; // add
 class BooksController extends Controller
 {
     // display book list
-    public function index()
+    /**
+    * public function index()
+    * {
+    *    $books = Book::orderBy('created_at', 'desc')->paginate(3); // change
+    *    return view('admin.book.books', [
+    *        'books' => $books
+    *   ]);
+    *}
+    */
+    public function index(BookDataTable $dataTable)
     {
-        $books = Book::orderBy('created_at', 'desc')->paginate(3); // change
-        return view('admin.book.books', [
-            'books' => $books
-        ]);
-    }
+        return $dataTable->render('admin.book.index');
+    }    
     // register processing
     public function register(Request $request)
     {
