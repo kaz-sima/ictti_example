@@ -75,3 +75,4 @@ Route::post('book/detail/{books}', 'BookborrowingController@detail');
 Route::post('book/borrow/{books}', 'BookborrowingController@borrow');
 Route::post('book/reservation/{books}', 'BookborrowingController@reservation');
 
+Route::get('profile/{organization}/course', 'ProfileController@getcourse')->name('profile.course'); //add

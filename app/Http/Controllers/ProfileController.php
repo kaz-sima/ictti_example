@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Mail\profileChanged; // add
 use App\Jobs\SendUpdatedMail; // add
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -61,5 +63,12 @@ class ProfileController extends Controller
         Session::forget($this->sessionKey);
         return redirect(route('user.top'));
     }
+    public function getcourse($organization) // add
+    {
+        $today = Carbon::now();
+        $course = Course::where('closing', '>', $today)->where('organization', $organization)->get()->pluck('name'); // to choose courses that currently run.
+        
+        return response()->json($course);
+    }    
 }
 
