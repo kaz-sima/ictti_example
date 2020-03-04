@@ -52,6 +52,10 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function(){
         Route::post('loans/{loan_id}', 'LoanmanageController@changestat');	// add
         Route::post('reserve/{reserve_id}', 'LoanmanageController@reservecancel'); //add
         
+        // view statistic
+        Route::get('statistic', 'StatisticsController@index')->name('statistic.index'); // add
+        Route::get('statistic/barchart', 'StatisticsController@barchart'); // add
+        Route::get('statistic/doughnutchart', 'StatisticsController@doughnutchart'); // add       
      });
 });
         
