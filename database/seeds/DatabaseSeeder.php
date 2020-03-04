@@ -23,6 +23,6 @@ class DatabaseSeeder extends Seeder
         
         $this->call('ctgriesSeeder'); 		//add
         $this->call('subctgriesSeeder'); 	//add
-        
+        $this->call('coursesSeeder'); 	//add        
     }
 }

@@ -23,6 +23,8 @@ $factory->define(User::class, function (Faker $faker) {
     $faker->seed($seed++);   
     
     return [
+        'organization' => $faker->numberBetween(1,2),
+        'course' => $faker->realText($maxNbChars = 20, $indexSize = 1),        
         'name' => $faker->firstName,
         'gender'=> $faker->randomElements(['male', 'female'])[0],
         'nrc'=>$faker->name,
