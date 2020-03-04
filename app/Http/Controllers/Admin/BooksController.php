@@ -31,6 +31,7 @@ class BooksController extends Controller
     {
         // validation
         $validator = Validator::make($request->all(), [
+            'book_img' => 'required|image',
             'book_title' => 'required|min:4|max:255',
             'Author' => 'required|min:4|max:100',
             'publisher' => 'required|min:4',
@@ -42,10 +43,19 @@ class BooksController extends Controller
         if ($validator->fails()) {
             return redirect('/admin/booksadd')->withErrors($validator)->withInput();
         }
+        // file upload
+        $file = $request->file('book_img');
+        if(!empty($file)){
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('public/',$filename); //public
+        }else{
+            $filename = "";
+        }        
         // book register processing
         $book = new Book();
         $form = $request->all();
         unset($form['_token']);
+        $form['book_img'] = $filename;
         $book->fill($form)->save();
         /*
          * $books->book_title = $request->book_title;
@@ -54,6 +64,7 @@ class BooksController extends Controller
          * $books->published = $request->published;
          * $books->save();
          */
+        $request->session()->flash('status', 'Task was successful!');
         return redirect('/admin/book');
     }
     // adding screen
@@ -84,6 +95,7 @@ class BooksController extends Controller
     {
         // Validation
         $validator = Validator::make($request->all(), [
+            'book_img' => 'required|image',
             'book_title' => 'required|min:4|max:255',
             'Author' => 'required|min:4|max:100',
             'publisher' => 'required|min:4',
@@ -96,10 +108,20 @@ class BooksController extends Controller
             //return redirect('/admin/book')->withInput()->withErrors($validator);
             return redirect('/admin/booksedit'."/".$request->id)->withErrors($validator)->withInput();
         }
+        // file upload
+        if($request->file('book_img')->isvalid()){
+            $filename = $request->file('book_img')->getClientOriginalName();
+            $request->file('book_img')->storeAs('public/',$filename); // move the file to the set place
+        }else{
+            $filename = "";
+        }
+        // book update processing
         $book = Book::find($request->id);
         $form = $request->all();
         unset($form['_token']);
+        $form['book_img'] = $filename;
         $book->fill($form)->save();
+        $request->session()->flash('status', 'Task was successful!');        
         return redirect('/admin/book');
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $guarded = ['id'];
-    protected $fillable=['book_title', 'Author', 'publisher', 'published', 'lendingstatus', 'ctgry_id', 'subctgry_id'];
+    protected $fillable=['book_img', 'book_title', 'Author', 'publisher', 'published', 'lendingstatus', 'ctgry_id', 'subctgry_id'];
     
     public function ctgry()
     {

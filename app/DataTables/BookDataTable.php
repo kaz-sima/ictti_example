@@ -21,19 +21,16 @@ class BookDataTable extends DataTable
         return datatables($query)
         ->editColumn('published', function(Book $book){
             return str_before($book->published, " ");
-        })
-        /*
+        })        
         ->addColumn('book_img', function(Book $book){
             $url= asset('storage/'.$book->book_img);
-            return '<img src="'.$url.'" width="50">
-            ';})
-         */
+            return empty($book->book_img) ? 'no image' :'<img src="'.$url.'" width="50">'
+            ;})
         ->addColumn('action', function (Book $book){
             return '<a href="booksedit/'.$book->id.'" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
             <a href="book/'.$book->id.'" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
            ';
-          // })->rawColumns(['book_img', 'action']);
-            })->rawColumns(['action']);
+        })->rawColumns(['book_img', 'action']);
     }    
     /**
      * Get query source of dataTable.
@@ -44,8 +41,7 @@ class BookDataTable extends DataTable
     public function query(Book $model)
     {
         return $model->newQuery()
-        //->select('id', 'book_img', 'book_title', 'Author', 'publisher', 'published');
-        ->select('id', 'book_title', 'Author', 'publisher', 'published');
+        ->select('id', 'book_img', 'book_title', 'Author', 'publisher', 'published');
     }
     /**
      * Optional method if you want to use html builder.
@@ -78,7 +74,7 @@ class BookDataTable extends DataTable
     {
         return [            
             Column::make('id'),
-            //Column::make('book_img'),
+            Column::make('book_img'),
             Column::make('book_title'),
             Column::make('Author'),
             Column::make('publisher'),

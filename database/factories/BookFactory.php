@@ -21,6 +21,7 @@ $factory->define(Book::class, function (Faker $faker) {
     $faker->seed($seed++);
     
     return [
+        'book_img' => '',
         'book_title' => $faker-> catchPhrase,
         'author'=>$faker->name,
         'publisher'=>$faker->company,

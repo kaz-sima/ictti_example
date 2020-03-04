@@ -7,10 +7,16 @@
 		<h2>New Book Form</h2>
 	</div>
 	<!-- book register form -->
-	<form action="{{ url('/admin/booksadd') }}" method="POST" class="form-horizontal">
-		{{ csrf_field() }}
-	<!-- book information-->
-	<div class="form-group">
+	<form action="{{ url('/admin/booksadd') }}" method="POST" class="form-horizontal" enctype='multipart/form-data'>
+	{{ csrf_field() }}
+    
+    <div class="form-group">
+        <!-- file add -->
+       	<div class="col-sm-12">
+       		<label>Image</label>
+               	<input type="file" name="book_img">
+        </div>
+	    <!-- book information-->
 		<div class="col-sm-6">
 			<label for="book" class="col-sm-3 control-label">Title</label>
 			<input type="text" name="book_title" id="book-title" class="form-control"
