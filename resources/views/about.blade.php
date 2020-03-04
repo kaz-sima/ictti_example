@@ -23,7 +23,7 @@
  	
     <div id="map" style="height: 500px; width: 80%; margin: 2rem auto 0;"></div>
     <!-- google map api -->
-    <script src="https://maps.googleapis.com/maps/api/js?key="your key""
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('Google_key')}}"
     ></script>
    
    <!-- js -->
