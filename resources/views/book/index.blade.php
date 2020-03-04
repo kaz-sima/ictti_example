@@ -78,7 +78,12 @@ $(function(){
 					<tr>
 						<td class="td-info">
 							<div>{{ $book->book_title }}</div>
-						</td>						
+							@if($book->book_img)
+								<div><img src="{{asset('/storage/'.$book->book_img)}}" width="50"></div>
+							@else
+								-- no image --
+							@endif
+						</td>				
 						<td class="td-info">
 							<div>{{ $book->Author }}</div>
 						</td>

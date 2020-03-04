@@ -5,8 +5,12 @@
 	<div class="col-md-3">
 		<h3>detailed information</h3>	
 		<td class="table-text">
-			<div>
-				<img src="{{asset('storage/'.$books->book_img)}}" width="50">
+			<div>				
+				@if($books->book_img)
+					<img src="{{asset('/storage/'.$books->book_img)}}" width="50">
+				@else
+					-- no image --
+				@endif
 			</div>
 			<div>Title : {{ $books->book_title }}</div>
 			<div>Auther : {{ $books->Author }}</div>
