@@ -13,13 +13,14 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         factory(App\User::class)->create(
-            ['name' => 'your name', 'email' => 'your valid email address']
+            ['name' => 'kaz sima', 'email' => 'simanaka@sage.ocn.ne.jp']
         );
         factory(App\User::class, 2)->create();
         factory(App\Admin::class)->create(
             ['name' => 'Adminstrator', 'username' => 'root', 'password' => bcrypt('admin')]
         );        
-        Factory(App\Book::class, 15)->create(); // add
+        factory(App\Book::class, 15)->create(); // add
+        factory(App\Loan::class, 100)->create(); // add
         
         $this->call('ctgriesSeeder'); 		//add
         $this->call('subctgriesSeeder'); 	//add

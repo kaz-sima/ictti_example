@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<span class=" fas fa-map-marker-alt"></span>	
+			<span class="fas fa-school"></span>	
 			<p>,ICTTI,Hlaing Township,Yangon.</p>
 		</div>
 		<div class="col">
