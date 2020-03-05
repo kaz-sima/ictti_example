@@ -15,8 +15,8 @@
                           <tr>
                              <td style="height:100%; width: 30%;">
 								<ul>
-                            		<li><a href="#">Edit Registration Infomation</a></li>
-                            		<li><a href="{{route('logout')}}">logout</a></li>
+                            		<li><a href="#">Edit Trainer Infomation</a></li>
+                            		<li><a href="{{route('staff.logout')}}">logout</a></li>
                             	</ul>
 							</td>
 							<td style="height:100%; width: 70%;">

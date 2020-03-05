@@ -7,20 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
-     * @return mixed
-     */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+        	// check if the user has been authenticated or not
+if (Auth::guard($guard)->check()) {
+            $route = ($guard) ? $guard.'.top': '/'; // making redirecting destination
+            return redirect()->route($route);    // redirect each top screen
+            //return redirect('/home');
         }
-
         return $next($request);
     }
 }

@@ -17,17 +17,44 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('book', 'BooksController@index'); // display book list
-//register
-Route::post('/booksadd','BooksController@register');
-//add
-Route::get('/booksadd','BooksController@add');
-//delete
-Route::delete('/book/{book}','BooksController@destroy');
-//edit
-Route::get('/booksedit/{book}', 'BooksController@edit');
-//update
-Route::post('/bookupdate', 'BooksController@update');
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function(){
+    Route::middleware('guest:admin')->group(function(){
+        
+        Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+        Route::post('login', 'Auth\LoginController@login');
+        
+        Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    });
+    Route::middleware('auth:admin')->group(function(){
+            
+            Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+            Route::get('/home', 'HomeController@index')->name('top');
+            
+            // book manage
+            Route::get('/book', 'BooksController@index')->name('book');
+            Route::post('/booksadd','BooksController@register');
+            Route::get('/booksadd','BooksController@add');
+            Route::delete('/book/{book}','BooksController@destroy');
+            Route::get('/booksedit/{book}', 'BooksController@edit');
+            Route::post('/bookupdate', 'BooksController@update');
+    });
+});
+
+Route::prefix('staff')->namespace('Staff')->as('staff.')->group(function(){
+     Route::middleware('guest:staff')->group(function(){
+            
+            Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+            Route::post('login', 'Auth\LoginController@login');
+            
+            Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+     });
+     Route::middleware('auth:staff')->group(function(){
+                
+            Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+            Route::get('/home', 'HomeController@index')->name('top');    
+     });
+});
+    Auth::routes(['verify' => true]);
+    Route::get('/home', 'HomeController@index')->name('user.top');
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Staff\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -19,13 +19,24 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+
     use AuthenticatesUsers;
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/staff/home';
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view('staff.auth.login');
+    }
     /**
      * Create a new controller instance.
      *
@@ -33,8 +44,10 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:user')->except('logout');
+        // moving middleware to web.php
+        $this->middleware('guest:staff')->except('logout');
     }
+        
     /**
      * Get the guard to be used during authentication.
      *
@@ -42,7 +55,7 @@ class LoginController extends Controller
      */
     protected function guard()
     {
-        return Auth::guard('user');
+        return Auth::guard('staff');
     }
     /**
      * Log the user out of the application.
@@ -61,6 +74,6 @@ class LoginController extends Controller
             $request->session()->invalidate();
         }
         
-        return $this->loggedOut($request) ?: redirect('/');
+        return $this->loggedOut($request) ?: redirect('staff/login');
     }
 }
