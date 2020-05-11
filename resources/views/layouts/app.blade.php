@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/assets/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/assets/css/docs.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-social.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
