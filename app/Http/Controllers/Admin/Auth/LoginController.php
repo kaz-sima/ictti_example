@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -27,8 +27,16 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-
+    protected $redirectTo = 'admin/home';
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view('admin.auth.login');
+    }    
     /**
      * Create a new controller instance.
      *
@@ -36,7 +44,16 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:user')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
+    }
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
     }
     /**
      * Get the guard to be used during authentication.
@@ -45,7 +62,7 @@ class LoginController extends Controller
      */
     protected function guard()
     {
-        return Auth::guard('user');
+        return Auth::guard('admin');
     }
     /**
      * Log the user out of the application.
@@ -53,16 +70,16 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
-    {
+     public function logout(Request $request)
+     {
         $logout = auth('user')->guest() || auth('admin')->guest();
-        
+     
         $this->guard()->logout();
-        
+     
         If($logout){
             $request->session()->invalidate(); // invalidate session
         }
-        
+     
         return $this->loggedOut($request) ?: redirect('/');
-    }
+     }
 }
