@@ -55,6 +55,10 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function(){
         
 // enabling the mail verification
 Auth::routes(['verify' => true]);
+
+Route::get('auth/{provider}', 'Auth\AuthController@redirect');
+Route::get('auth/{provider}/callback', 'Auth\AuthController@callback');
+
 Route::get('/home', 'HomeController@index')->name('user.top');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 

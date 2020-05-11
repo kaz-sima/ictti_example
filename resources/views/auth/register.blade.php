@@ -128,6 +128,11 @@
 								<p class="p-member">Are you a member ?<a href="{{ url('login') }}"> Login Here!</a></p>
 							</div>
 						</div>
+						<dev class="row">
+							<div class="col-md-3 ">     						
+        						<a href="{{ url('/auth/facebook')}}" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+	       					</div>	       					
+						</dev>						
 					</form>
 				</div>
 			</div>

@@ -64,6 +64,13 @@
                                 @endif
                             </div>
                         </div>
+                        <br>
+						<div class="row">
+						<div class="col-md-3 offset-md-1">
+							<a href="{{ url('/auth/facebook')}}" class="btn btn-facebook"><i
+								class="fa fa-facebook"></i> Facebook</a>
+						</div>						
+						</div>                        
                     </form>
                 </div>
             </div>
