@@ -5,6 +5,6 @@
     <a href="{{route('register')}}" class="list-group-item list-group-item-success">To Registration Page</a>
     <a href="{{url('/login')}}" class="list-group-item list-group-item-info">To Member Login</a>
     <a href="{{url('admin/login')}}" class="list-group-item list-group-item-warning">To Admin Login</a>
-    <!-- <a href="#" class="list-group-item list-group-item-danger">Fourth item</a>-->
+    <a href="{{url('about')}}" class="list-group-item list-group-item-danger">about us</a>
 </div>
 @endsection
